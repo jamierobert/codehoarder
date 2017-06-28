@@ -5,7 +5,7 @@
 {% block title %}Flasky - Post{% endblock %}
 
 {% block page_content %}
-{% include '_posts.html' %}
+{% include 'article.html' %}
 <h4 id="comments">Comments</h4>
 {% if current_user.is_authenticated %}
 <div class="comment-form">
