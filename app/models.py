@@ -309,8 +309,8 @@ class Post(db.Model):
         for i in range(count):
             u = User.query.offset(randint(0, user_count - 1)).first()
             p = Post(title=forgery_py.lorem_ipsum.title(),
-                     sub_title=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
-                     body=forgery_py.lorem_ipsum.sentences(randint(1, 5)),
+                     sub_title=forgery_py.lorem_ipsum.sentences(randint(1, 2)),
+                     body=forgery_py.lorem_ipsum.sentences(randint(50, 100)),
                      timestamp=forgery_py.date.date(True),
                      image=images[randint(0, 2)],
                      author=u)
