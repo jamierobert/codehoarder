@@ -288,9 +288,12 @@ def load_user(user_id):
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text)
+    sub_title = db.Column(db.Text)
     body = db.Column(db.Text)
     body_html = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    image = db.Column(db.Text)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
@@ -301,10 +304,15 @@ class Post(db.Model):
 
         seed()
         user_count = User.query.count()
+        images=["image1.jpg", "image2.jpg", "image3.jpg"]
+
         for i in range(count):
             u = User.query.offset(randint(0, user_count - 1)).first()
-            p = Post(body=forgery_py.lorem_ipsum.sentences(randint(1, 5)),
+            p = Post(title=forgery_py.lorem_ipsum.title(),
+                     sub_title=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
+                     body=forgery_py.lorem_ipsum.sentences(randint(1, 5)),
                      timestamp=forgery_py.date.date(True),
+                     image=images[randint(0, 2)],
                      author=u)
             db.session.add(p)
             db.session.commit()
