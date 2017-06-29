@@ -19,9 +19,23 @@ body{
     width: 100%;
     height: 20%;
 }
+.ad-header{
+    vertical-align: top;
+    display: block;
+}
 
 .col-sm-3{
     padding: 10px;
+
+}
+
+
+.col-sm-9{
+    padding: 10px;
+}
+
+.alert{
+    background-color: dodgerblue;
 }
 .profile-thumbnail {
     position: absolute;
@@ -31,23 +45,33 @@ body{
     margin-left: 280px;
 }
 div.post-tabs {
-    margin-top: 16px;
+    margin-top: 5px;
+
 }
 .posts {
     list-style-type: none;
     padding: 0px;
-    margin: 20px 20px 20px 20px;
+
 }
+.post-background {
+    background-color: #e7e41e;
+    border-radius: 25px;
+    padding: 1px 10px 1px 10px;
+    margin: 5px;
+}
+
+
+
 div.post-tabs ul.posts {
     margin: 0px;
     border-top: none;
 }
 ul.posts li.post {
     padding: 8px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #6e6d70;
 }
 ul.posts li.post:hover {
-    background-color: #f0f0f0;
+    background-color: #6e6d70;
 }
 div.post-date {
     float: right;
@@ -73,13 +97,13 @@ ul.comments {
 ul.comments li.comment {
     margin-left: 32px;
     padding: 8px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #6e6d70;
 }
 ul.comments li.comment:nth-child(1) {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #6e6d70;
 }
 ul.comments li.comment:hover {
-    background-color: #f0f0f0;
+    background-color: #6e6d70;
 }
 div.comment-date {
     float: right;
@@ -105,7 +129,7 @@ div.pagination {
 }
 div.flask-pagedown-preview {
     margin: 10px 0px 10px 0px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #6e6d70;
     padding: 4px;
 }
 div.flask-pagedown-preview h1 {
@@ -127,5 +151,5 @@ div.flask-pagedown-preview h3 {
     font-size: 120%;
 }
 .table.followers tr {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #6e6d70;
 }

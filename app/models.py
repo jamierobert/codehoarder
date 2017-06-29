@@ -304,7 +304,7 @@ class Post(db.Model):
 
         seed()
         user_count = User.query.count()
-        images=["image1.jpg", "image2.jpg", "image3.jpg"]
+        images = ["image1.jpg", "image2.jpg", "image3.jpg"]
 
         for i in range(count):
             u = User.query.offset(randint(0, user_count - 1)).first()
