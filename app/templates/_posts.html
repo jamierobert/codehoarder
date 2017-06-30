@@ -2,8 +2,8 @@
 {% for post_row in posts | batch(3) %}
     {% set outer_loop = loop %}
     <div class="row container-fluid">
-     {%  for post in post_row %}
-         {%  if loop.index % 3 == 1 %}
+     {% for post in post_row %}
+         {%  if loop.index0==0 %}
             <div class="post col-sm-3 col-1">
 
                 <div class="post-thumbnail">
@@ -17,7 +17,7 @@
                     <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
                     <div class="post-author"><a href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a></div>
 
-                    <div class="post-title"><h3>{{ post.title }}</h3></div>
+                    <div class="post-title title-1"><h3>{{ post.title }}</h3></div>
                     <div class="post-image">
                         <img src="static/{{ post.image }}" class="center-block img-responsive img-rounded"
                        alt="image2"
@@ -48,7 +48,7 @@
             </div>
          {% endif %}
 
-         {%  if loop.index % 3 == 2 %}
+         {%  if loop.index0==1 %}
             <div class="post col-sm-3 col-2">
                 <div class="post-thumbnail">
                     <a href="{{ url_for('.user', username=post.author.username) }}">
@@ -58,7 +58,7 @@
                 <div class="post-content">
                     <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
                     <div class="post-author"><a href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a></div>
-                    <div class="post-title"><h3>{{ post.title }}</h3></div>
+                    <div class="post-title title-2"><h3>{{ post.title }}</h3></div>
                     <div class="post-image">
                         <img src="static/{{ post.image }}" class="center-block img-responsive img-rounded"
                        alt="image2"
@@ -87,7 +87,7 @@
                 </div>
             </div>
          {% endif %}
-             {%  if loop.index % 3 == 0 %}
+         {%  if loop.index0==2 %}
             <div class="post col-sm-3 col-3">
                 <div class="post-thumbnail">
                     <a href="{{ url_for('.user', username=post.author.username) }}">
@@ -97,7 +97,7 @@
                 <div class="post-content">
                     <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
                     <div class="post-author"><a href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a></div>
-                    <div class="post-title"><h3>{{ post.title }}</h3></div>
+                    <div class="post-title title-3"><h3>{{ post.title }}</h3></div>
                     <div class="post-image">
                         <img src="static/{{ post.image }}" class="center-block img-responsive img-rounded"
                        alt="image2"
@@ -126,30 +126,26 @@
                 </div>
             </div>
          {% endif %}
+
+{#         FINAL COLUMN #}
          {%  if loop.index0 == 2 and outer_loop.index0 == 0  %}
+
              <div class="col-sm-3 col-4 recruitment">
 
                  <h1 class="recruitment-title">We are recruiting</h1>
                  <p class="recruitment-text"> Bloggers that is.. click here If you would like to join this site as a contributor</p>
 
              </div>
-
-
-
          {% endif %}
          {%  if loop.index0 == 2 and outer_loop.index0 == 1  %}
-             <div class="col-sm-3 col-4 sublime">
+             <div class="col-sm-3 col-4 pycharm">
 
                  <img src="static/pycharm.png" class="center-block img-responsive img-rounded"
                        alt="image2"
                        width=900px height=100px/>
 
              </div>
-
-
-
          {% endif %}
-
          {%  if loop.index0 == 2 and outer_loop.index0 == 2  %}
              <div class="col-sm-3 col-4 advertising">
 
@@ -157,97 +153,47 @@
                  <p class="advertising-text"> Contact us for further information</p>
 
              </div>
-
-
-
          {% endif %}
-
          {%  if loop.index0 == 2 and outer_loop.index0 == 3  %}
              <div class="col-sm-3 col-4 sublime">
 
-                 <img src="static/anaconda.png" class="center-block img-responsive img-rounded"
+                 <img src="static/anaconda.png" class="center-block img-responsive img-rounded anaconda"
                        alt="image2"
                        width=900px height=100px/>
 
              </div>
-
-
-
          {% endif %}
-
-          {%  if loop.index0 == 2 and outer_loop.index0 == 4  %}
+         {%  if loop.index0 == 2 and outer_loop.index0 == 4  %}
              <div class="col-sm-3 col-4 signup">
 
                  <h1 class="advertising-title">Join Us</h1>
                  <p class="advertising-text"> If you would like an email update on our recent articles or to comment on anny of the articles that we feature here. Register here ! </p>
 
              </div>
-
-
-
          {% endif %}
          {%  if loop.index0 == 2 and outer_loop.index0 == 5  %}
-             <div class="col-sm-3 col-4 linux">
+
+             <div class="col-sm-3 col-4 java">
              <img src="static/java.png" class="center-block img-responsive img-rounded"
                        alt="image2"
                        width=900px height=100px/>
              </div>
+         {% endif %}
+          {%  if loop.index0 == 2 and outer_loop.index0 == 6 %}
 
+          <div class="col-sm-3 col-4 red">
 
+             <h1 class="advertising-title">Trust Us</h1>
+             <p class="advertising-text"> If it is advertised here it is a product we use and believe in.</p>
 
+         </div>
          {% endif %}
 
-          {%  if loop.index0 == 1 and outer_loop.index0 == 6  %}
-
-              <div class="post col-sm-3 col-3">
-                <div class="post-thumbnail">
-                    <a href="{{ url_for('.user', username=post.author.username) }}">
-                        <img class="img-rounded profile-thumbnail" src="{{ post.author.gravatar(size=40) }}">
-                    </a>
-                </div>
-                <div class="post-content">
-                    <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
-                    <div class="post-author"><a href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a></div>
-                    <div class="post-title"><h3>{{ post.title }}</h3></div>
-                    <div class="post-image">
-                        <img src="static/{{ post.image }}" class="center-block img-responsive img-rounded"
-                       alt="image2"
-                       width=900px height=100px/>
-                    </div>
-                    <div class="post-subtitle"><p>{{ post.sub_title }}</p></div>
 
 
-                    <div class="post-footer">
-                        {% if current_user == post.author %}
-                        <a href="{{ url_for('.edit', id=post.id) }}">
-                            <span class="label label-primary">Edit</span>
-                        </a>
-                        {% elif current_user.is_administrator() %}
-                        <a href="{{ url_for('.edit', id=post.id) }}">
-                            <span class="label label-danger">Edit [Admin]</span>
-                        </a>
-                        {% endif %}
-                        <a href="{{ url_for('.post', id=post.id) }}">
-                            <span class="label label-default">Read More</span>
-                        </a>
-                        <a href="{{ url_for('.post', id=post.id) }}#comments">
-                            <span class="label label-primary">{{ post.comments.count() }} Comments</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-              <div class="col-sm-3 col-4 red">
-
-                 <h1 class="advertising-title">Trust Us</h1>
-                 <p class="advertising-text"> If it is advertised here it is a product we use and believe in.</p>
-
-             </div>
-
-
-
-         {% endif %}
 
    {% endfor %}
- </div>
+</div>
 {%  endfor %}
+
 </div>
