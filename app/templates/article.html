@@ -17,7 +17,7 @@
         </div>
 
         <div class="post-main"><p> {% filter markdown %}
-                                   {{ post.body }}
+                                   {{ post.body | safe }}
                                    {% endfilter %}</p></div>
 
 
