@@ -11,12 +11,17 @@
 <h4 id="comments">Comments</h4>
 {% if current_user.is_authenticated %}
 <div class="comment-form">
-    {{ wtf.quick_form(form) }}
+    <form class="form form-vertical" method="POST" >
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+       <p>{{ form.body.label(style="height: 10px;") }}</p>
+       {{ form.body(style="height: 20px;") }}
+        {{ form.submit(style="height: 20px;") }}
+    </form>
+
 </div>
 {% endif %}
-
     {% include '_comments.html' %}
-
 {% if pagination %}
 <div class="pagination">
     {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=posts[0].id) }}
