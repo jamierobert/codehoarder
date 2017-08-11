@@ -15,7 +15,11 @@
            alt="image2"
            width=450px height=50px/>
         </div>
-        <div class="'post-main"><p>{{ post.body }}</p></div>
+
+        <div class="post-main"><p> {% filter markdown %}
+                                   {{ post.body }}
+                                   {% endfilter %}</p></div>
+
 
 
         <div class="post-footer">
