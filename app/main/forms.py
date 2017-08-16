@@ -52,9 +52,9 @@ class EditProfileAdminForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = PageDownField("Title", validators=[Required()])
-    sub_title = PageDownField("sub_title", validators=[Required()])
+    sub_title = PageDownField("Subtitle", validators=[Required()])
     image = PageDownField("Image Path", validators=[Required()])
-    body = PageDownField("body", validators=[Required()])
+    body = PageDownField("Body", validators=[Required()])
     submit = SubmitField('Submit')
 
 
