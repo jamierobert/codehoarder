@@ -18,6 +18,8 @@ form {
 }
 textarea{
     height: 2em;
+    background-color: white;
+    boder: grey solid 0.1em;
 }
 a{
     color: grey;
@@ -70,9 +72,7 @@ a:hover{
     color:white;
 }
 
-.nav.navbar li a {
-    color: blue;
-}
+
 /*a:link{*/
     /*color: yellow;*/
 /*}a:link{*/
@@ -431,7 +431,7 @@ body {
  */
 
 .footer {
-    color: #b4bcc5;
+    color: #2a2a2a;
     position:fixed;
     z-index : 1;
     bottom: 0;
@@ -441,6 +441,25 @@ body {
     background-color: black;
     width:100%;
 }
+
+ul.dropdown-menu, #dropdown1{
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+ul.dropdown-menu, #dropdown2{
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+ul.dropdown-menu, #dropdown3{
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
 
 
 /*==========  Non-Mobile First Method  ==========*/
