@@ -10,6 +10,7 @@ from ..models import Permission, Role, User, Post, Comment
 from ..decorators import admin_required, permission_required
 
 
+
 @main.after_app_request
 def after_request(response):
     for query in get_debug_queries():
@@ -30,6 +31,8 @@ def server_shutdown():
         abort(500)
     shutdown()
     return 'Shutting down...'
+
+
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -148,6 +151,10 @@ def edit(id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
+        post.title = form.title.data
+        post.sub_title = form.sub_title.data
+        post.body = form.body.data
+        post.image = form.image.data
         post.body = form.body.data
         db.session.add(post)
         flash('The post has been updated.')
