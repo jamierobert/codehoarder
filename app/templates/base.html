@@ -64,23 +64,16 @@
         {% endfor %}
     </div>
     {% block page_content %}{% endblock %}
-
-    <aside class="leaderboard centered text-center">
-        <h1>This is an ad</h1>
-    </aside>
-
-    {% block footer %}
-        <footer class="footer navbar-bottom">
-            <P>About Me</P>
-            <P>Contact</P>
-            <P>Sign Up</P>
-            <P>RSS Feed</P>
-            <P> Powered by AWS elastic beanstalk, Flask, Docker and Nginx </P>
-        </footer>
-    {% endblock %}
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+    <script src='../static/autosize.min.js'></script>
+	<script>
+		autosize(document.querySelectorAll('textarea'));
+
+	</script>
     {{ moment.include_moment() }}
 {% endblock %}
