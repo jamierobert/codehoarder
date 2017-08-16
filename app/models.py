@@ -1,11 +1,13 @@
-from datetime import datetime
 import hashlib
-from werkzeug.security import generate_password_hash, check_password_hash
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from markdown import markdown
+from datetime import datetime
+
 import bleach
 from flask import current_app, request, url_for
 from flask_login import UserMixin, AnonymousUserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from markdown import markdown
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from app.exceptions import ValidationError
 from . import db, login_manager
 
@@ -135,7 +137,7 @@ class User(UserMixin, db.Model):
 
     @password.setter
     def password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password, "pbkdf2:sha256")
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
@@ -197,7 +199,7 @@ class User(UserMixin, db.Model):
 
     def can(self, permissions):
         return self.role is not None and \
-            (self.role.permissions & permissions) == permissions
+               (self.role.permissions & permissions) == permissions
 
     def is_administrator(self):
         return self.can(Permission.ADMINISTER)
@@ -236,7 +238,7 @@ class User(UserMixin, db.Model):
 
     @property
     def followed_posts(self):
-        return Post.query.join(Follow, Follow.followed_id == Post.author_id)\
+        return Post.query.join(Follow, Follow.followed_id == Post.author_id) \
             .filter(Follow.follower_id == self.id)
 
     def to_json(self):
@@ -276,6 +278,7 @@ class AnonymousUser(AnonymousUserMixin):
 
     def is_administrator(self):
         return False
+
 
 login_manager.anonymous_user = AnonymousUser
 
