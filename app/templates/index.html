@@ -1,55 +1,75 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "_macros.html" as macros %}
-
 {% block title %}Flasky{% endblock %}
-
 {% block page_content %}
 <div class="jumbotron text-center" >
-  <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
-  <h2>Welcome to CodeHoarder.</h2>
+    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+    <h2>Welcome to CodeHoarder.</h2>
 </div>
-
 <div>
     {% if current_user.can(Permission.MODERATE_COMMENTS) %}
-
         <form class="form" method="POST" >
         {{ form.hidden_tag() }}
-        {{ form.title.label(style="height: 10px;") }}
-        {{ form.title(style="height: 20px;") }}
-        {{ form.sub_title.label(style="height: 10px;") }}
-        {{ form.sub_title(style="height: 20px;") }}
+        {{ form.title.label(style="height: 1em;") }}
+        {{ form.title(style="height: 2em; width:25%; background-color:grey; border-style: solid; border-color: white; border-radius: 10px; resize: none; color: white;") }}
+        {{ form.sub_title.label(style="height: 1em;") }}
+        {{ form.sub_title(style="height: 2em; width:25%; background-color:grey; border-radius: 10px;border-style: solid; border-color: white; resize: none; color: white;") }}
         {{ form.image.label(style="height: 10px;") }}
-        {{ form.image(style="height: 20px;") }}
-        {{ form.body.label(style="height: 10px; ") }}
-        {{ form.body(style="height: 200px; width: 100%;") }}
-        {{ form.submit (style="height: 20px;")}}
-
-
+        {{ form.image(style="height: 2em; background-color:grey; border-radius: 10px; border: 0.1em white solid; resize: none; color: white;" ) }}
+        {{ form.body.label(style="height: 1em; ") }}
+        {{ form.body (style="display: inline-block; min-height: 2em; width: 48%; background-color:grey; border-style: solid; border-color: white; border-radius: 10px; resize: none; color: white;") }}
+        <input type="submit" value="Post">
         </form>
-
-
     {% endif %}
 </div>
+<div class="main-content">
+    <article class="post-tabs">
+        <ul class="nav nav-tabs">
+            <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a></li>
+            {% if current_user.is_authenticated %}
+            <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Followers</a></li>
+            {% endif %}
+        </ul>
+        {% include '_posts.html' %}
+    </article>
 
-<div class="post-tabs">
-    <ul class="nav nav-tabs">
-        <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a></li>
-        {% if current_user.is_authenticated %}
-        <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Followers</a></li>
-        {% endif %}
-    </ul>
-    {% include '_posts.html' %}
+    <aside class="sidebar-right-index">
+        <h5>Trending:</h5>
+        <ul class="nav nav-tabs">
+            <li><a href="{{ url_for('.show_all') }}">Topics</a></li>
+            <li><a href="{{ url_for('.show_followed') }}">Articles</a></li>
+        </ul>
+    </aside>
+
+
+
+
 </div>
 
 {% if pagination %}
-<div class="text-center pagination">
-    {{ macros.pagination_widget(pagination, '.index') }}
-</div>
+    <div class="text-center pagination">
+        {{ macros.pagination_widget(pagination, '.index') }}
+    </div>
 {% endif %}
+    <aside class="leaderboard">
+        <h1>This is an ad</h1>
+    </aside>
+     {% block footer %}
+    <footer class="footer navbar-bottom">
+        <p> Powered by AWS elastic beanstalk, Flask, Docker and Nginx </p>
+    </footer>
+ {% endblock %}
+
+
 {% endblock %}
+
+
+
+
 
 {% block scripts %}
 {{ super() }}
 {{ pagedown.include_pagedown() }}
+
 {% endblock %}
