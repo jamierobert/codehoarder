@@ -9,16 +9,16 @@
 </div>
 <div>
     {% if current_user.can(Permission.MODERATE_COMMENTS) %}
-        <form class="form" method="POST" >
+        <form class="form article-form" method="POST" >
         {{ form.hidden_tag() }}
         {{ form.title.label(style="height: 1em;") }}
-        {{ form.title(style="height: 2em; width:25%; background-color:grey; border-style: solid; border-color: white; border-radius: 10px; resize: none; color: white;") }}
+        {{ form.title() }}
         {{ form.sub_title.label(style="height: 1em;") }}
-        {{ form.sub_title(style="height: 2em; width:25%; background-color:grey; border-radius: 10px;border-style: solid; border-color: white; resize: none; color: white;") }}
+        {{ form.sub_title() }}
         {{ form.image.label(style="height: 10px;") }}
-        {{ form.image(style="height: 2em; background-color:grey; border-radius: 10px; border: 0.1em white solid; resize: none; color: white;" ) }}
+        {{ form.image() }}
         {{ form.body.label(style="height: 1em; ") }}
-        {{ form.body (style="display: inline-block; min-height: 2em; width: 48%; background-color:grey; border-style: solid; border-color: white; border-radius: 10px; resize: none; color: white;") }}
+        {{ form.body () }}
         <input type="submit" value="Post">
         </form>
     {% endif %}

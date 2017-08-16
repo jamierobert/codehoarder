@@ -16,10 +16,19 @@ form {
     padding: 2em;
     margin-bottom: 1em;
 }
+.article-form{
+    width: 50%;
+}
 textarea{
     height: 2em;
-    background-color: white;
-    boder: grey solid 0.1em;
+    background: white;
+    border: grey solid 0.1em;
+    display: inline-block;
+    min-height: 2em;
+    width: 100%;
+    border-radius: 10px;
+    resize: none;
+    color: grey;
 }
 a{
     color: grey;
