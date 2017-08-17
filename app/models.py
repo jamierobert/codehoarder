@@ -362,9 +362,11 @@ class Post(db.Model):
             raise ValidationError('post does not have a body')
         return Post(body=body)
 
+    def __repr__(self):
+        return '<Post %r>' % self.title
+
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
-
 
 
 class Topic(db.Model):
@@ -389,6 +391,9 @@ class Topic(db.Model):
                 p = Post.query.offset(randint(0, post_count - 1)).first()
                 p.topics.append(t)
                 db.session.commit()
+
+    def __repr__(self):
+        return '<Topic %r>' % self.topic
 
 
 class Comment(db.Model):
