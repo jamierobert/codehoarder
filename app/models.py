@@ -288,8 +288,15 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+relations = db.Table('relations',
+        db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
+        db.Column('topic_id', db.Integer, db.ForeignKey('topics.id'))
+)
+
+
 class Post(db.Model):
     __tablename__ = 'posts'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
     sub_title = db.Column(db.Text)
@@ -299,6 +306,10 @@ class Post(db.Model):
     image = db.Column(db.Text)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+
+    topics = db.relationship('Topic', secondary=relations, backref=db.backref('posts', lazy='dynamic'), lazy='dynamic')
+
+
 
     @staticmethod
     def generate_fake(count=100):
@@ -317,6 +328,7 @@ class Post(db.Model):
                      timestamp=forgery_py.date.date(True),
                      image=images[randint(0, 2)],
                      author=u)
+
             db.session.add(p)
             db.session.commit()
 
@@ -352,6 +364,31 @@ class Post(db.Model):
 
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
+
+
+
+class Topic(db.Model):
+
+    __tablename__ = 'topics'
+
+    id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.Text)
+
+    @staticmethod
+    def generate_fake(count=10):
+        from random import seed, randint
+        import forgery_py
+
+        seed()
+        post_count = Post.query.count()
+
+        for i in range(count):
+            t = (Topic(topic=forgery_py.lorem_ipsum.title(1),
+                       comment_count=randint(0, 50),))
+            for j in range(10, 30):
+                p = Post.query.offset(randint(0, post_count - 1)).first()
+                p.topics.append(t)
+                db.session.commit()
 
 
 class Comment(db.Model):
