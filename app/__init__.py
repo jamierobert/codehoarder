@@ -1,12 +1,13 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 from flask_mail import Mail
 from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
 from flask_pagedown import PageDown
-from config import config
+from flask_sqlalchemy import SQLAlchemy
 from flaskext.markdown import Markdown
+
+from config import config
 
 bootstrap = Bootstrap()
 mail = Mail()
@@ -30,7 +31,6 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     pagedown.init_app(app)
-
 
     if not app.debug and not app.testing and not app.config['SSL_DISABLE']:
         from flask_sslify import SSLify

@@ -1,8 +1,9 @@
 from flask import jsonify, request, g, url_for, current_app
-from .. import db
-from ..models import Post, Permission, Comment
+
 from . import api
 from .decorators import permission_required
+from .. import db
+from ..models import Post, Permission, Comment
 
 
 @api.route('/comments/')
@@ -14,10 +15,10 @@ def get_comments():
     comments = pagination.items
     prev = None
     if pagination.has_prev:
-        prev = url_for('api.get_comments', page=page-1, _external=True)
+        prev = url_for('api.get_comments', page=page - 1, _external=True)
     next = None
     if pagination.has_next:
-        next = url_for('api.get_comments', page=page+1, _external=True)
+        next = url_for('api.get_comments', page=page + 1, _external=True)
     return jsonify({
         'comments': [comment.to_json() for comment in comments],
         'prev': prev,
@@ -42,11 +43,11 @@ def get_post_comments(id):
     comments = pagination.items
     prev = None
     if pagination.has_prev:
-        prev = url_for('api.get_post_comments', id=id, page=page-1,
+        prev = url_for('api.get_post_comments', id=id, page=page - 1,
                        _external=True)
     next = None
     if pagination.has_next:
-        next = url_for('api.get_post_comments', id=id, page=page+1,
+        next = url_for('api.get_post_comments', id=id, page=page + 1,
                        _external=True)
     return jsonify({
         'comments': [comment.to_json() for comment in comments],
@@ -66,5 +67,5 @@ def new_post_comment(id):
     db.session.add(comment)
     db.session.commit()
     return jsonify(comment.to_json()), 201, \
-        {'Location': url_for('api.get_comment', id=comment.id,
-                             _external=True)}
+           {'Location': url_for('api.get_comment', id=comment.id,
+                                _external=True)}

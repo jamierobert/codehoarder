@@ -4,15 +4,15 @@
 {% block title %}Flasky - Edit Post{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
-    <h1>Edit Post</h1>
-</div>
-<div>
-    {{ wtf.quick_form(form) }}
-</div>
+    <div class="page-header">
+        <h1>Edit Post</h1>
+    </div>
+    <div>
+        {{ wtf.quick_form(form) }}
+    </div>
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
-{{ pagedown.include_pagedown() }}
+    {{ super() }}
+    {{ pagedown.include_pagedown() }}
 {% endblock %}

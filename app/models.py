@@ -289,9 +289,9 @@ def load_user(user_id):
 
 
 relations = db.Table('relations',
-        db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
-        db.Column('topic_id', db.Integer, db.ForeignKey('topics.id'))
-)
+                     db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
+                     db.Column('topic_id', db.Integer, db.ForeignKey('topics.id'))
+                     )
 
 
 class Post(db.Model):
@@ -311,8 +311,6 @@ class Post(db.Model):
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
     topics = db.relationship('Topic', secondary=relations, backref=db.backref('posts', lazy='dynamic'), lazy='dynamic')
-
-
 
     @staticmethod
     def generate_fake(count=100):
@@ -373,7 +371,6 @@ db.event.listen(Post.body, 'set', Post.on_changed_body)
 
 
 class Topic(db.Model):
-
     __tablename__ = 'topics'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -392,7 +389,7 @@ class Topic(db.Model):
 
         for i in range(count):
             t = (Topic(topic=forgery_py.lorem_ipsum.title(1),
-                       comment_count=randint(0, 50),))
+                       comment_count=randint(0, 50), ))
             for j in range(10, 30):
                 p = Post.query.offset(randint(0, post_count - 1)).first()
                 p.topics.append(t)
