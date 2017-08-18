@@ -1,14 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
     SubmitField
-from wtforms.validators import Required, Length, Email, Regexp
+from wtforms.validators import DataRequired, Length, Email, Regexp
 from wtforms import ValidationError
 from flask_pagedown.fields import PageDownField
 from ..models import Role, User
 
 
 class NameForm(FlaskForm):
-    name = StringField('What is your name?', validators=[Required()])
+    name = StringField('What is your name?', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
@@ -20,10 +20,10 @@ class EditProfileForm(FlaskForm):
 
 
 class EditProfileAdminForm(FlaskForm):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64),
                                              Email()])
     username = StringField('Username', validators=[
-        Required(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
+        DataRequired(), Length(1, 64), Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
                                           'Usernames must have only letters, '
                                           'numbers, dots or underscores')])
     confirmed = BooleanField('Confirmed')
@@ -51,13 +51,14 @@ class EditProfileAdminForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    title = PageDownField("Title", validators=[Required()])
-    sub_title = PageDownField("Subtitle", validators=[Required()])
-    image = PageDownField("Image Path", validators=[Required()])
-    body = PageDownField("Body", validators=[Required()])
+    title = PageDownField("Title", validators=[DataRequired()])
+    sub_title = PageDownField("Subtitle", validators=[DataRequired()])
+    image = PageDownField("Image Path", validators=[DataRequired()])
+    topics = PageDownField("Topics", validators=[DataRequired()])
+    body = PageDownField("Body", validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
 class CommentForm(FlaskForm):
-    body = StringField('Enter your comment', validators=[Required()])
+    body = StringField('Enter your comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
