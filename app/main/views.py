@@ -132,6 +132,15 @@ def edit_profile_admin(id):
 @main.route('/post/<int:id>', methods=['GET', 'POST'])
 def post(id):
     post = Post.query.get_or_404(id)
+    topics = post.topics.all()
+    if post.read_count is None:
+        post.read_count = 0
+
+    if current_user != post.author:
+        post.read_count += 1
+        for topic in topics:
+            topic.read_count += 1
+
     form = CommentForm()
     if form.validate_on_submit():
         comment = Comment(body=form.body.data,
