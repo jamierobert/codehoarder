@@ -6,7 +6,7 @@ from . import main
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm,\
     CommentForm
 from .. import db
-from ..models import Permission, Role, User, Post, Comment
+from ..models import Permission, Role, User, Post, Comment, Topic
 from ..decorators import admin_required, permission_required
 
 
@@ -33,8 +33,6 @@ def server_shutdown():
     return 'Shutting down...'
 
 
-
-
 @main.route('/', methods=['GET', 'POST'])
 def index():
     form = PostForm()
@@ -46,6 +44,18 @@ def index():
                     body=form.body.data,
                     author=current_user._get_current_object())
         db.session.add(post)
+        topics = form.topics.data
+        clean_topics = "".join(topics.split())
+        topics_list = clean_topics.split(',')
+        capitalized = [topic.capitalize() for topic in topics_list]
+
+        query = db.session.query(Topic).all()
+        for topic in capitalized:
+            if topic in query:
+                post.topics.append(topic)
+            else:
+                new_topic = Topic(topic=topic)
+                post.topics.append(new_topic)
         return redirect(url_for('.index'))
     page = request.args.get('page', 1, type=int)
     show_followed = False
