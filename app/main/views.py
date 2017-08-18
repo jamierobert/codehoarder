@@ -139,7 +139,9 @@ def post(id):
     if current_user != post.author:
         post.read_count += 1
         for topic in topics:
-            topic.read_count += 1
+            if post.read_count is None:
+                topic.read_count = 0
+                topic.read_count += 1
 
     form = CommentForm()
     if form.validate_on_submit():
