@@ -70,8 +70,11 @@ def index():
         page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False)
     posts = pagination.items
-    return render_template('index.html', form=form, posts=posts,
-                           show_followed=show_followed, pagination=pagination)
+    popular_posts = Post.get_trending_posts()
+    popular_topics = Topic.get_trending_topics()
+
+    return render_template('index.html', popular_posts=popular_posts, popular_topics=popular_topics, form=form,
+                           posts=posts, show_followed=show_followed, pagination=pagination)
 
 
 @main.route('/user/<username>')
@@ -215,6 +218,8 @@ def downvote(id):
         db.session.add(dislike)
         db.session.commit()
     return redirect(url_for('.index'))
+
+
 
 
 @main.route('/follow/<username>')
