@@ -1,0 +1,7 @@
+<div>
+    <ol>
+    {% for post in popular_posts %}
+        <li>{{  post.title }}: {{ post.sub_title }}</li>
+    {% endfor %}
+    </ol>
+</div>
