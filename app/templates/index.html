@@ -40,13 +40,20 @@
 
         <aside class="sidebar-right-index">
             <h5>Trending:</h5>
-            <ul class="nav nav-tabs">
-                <li><a href="{{ url_for('.show_all') }}">Topics</a></li>
-                <li><a href="{{ url_for('.show_followed') }}">Articles</a></li>
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#posts">Topics</a></li>
+                <li><a data-toggle="pill" href="#topics" href="#topics">Articles</a>
+                </li>
             </ul>
+
+            <div class="tab-content">
+                <div id="posts" class="tab-pane fade in active">
+                    {% include 'top_twenty_posts.html' %}
+                </div>
+                <div id="topics" class="tab-pane fade">
+                    {% include 'top_twenty_topics.html' %}
+                </div>
         </aside>
-
-
     </div>
 
     {% if pagination %}
