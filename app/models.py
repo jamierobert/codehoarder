@@ -404,6 +404,21 @@ class Topic(db.Model):
     likes = db.Column(db.Integer, default=0)
 
     @staticmethod
+    def get_trending_topics():
+        topics = Topic.query.all()
+        for topic in topics:
+            if topic.read_count is None:
+                topic.read_count = 0
+            if topic.comment_count is None:
+                topic.comment_count = 0
+
+            topic.score = topic.read_count + topic.comment_count
+
+        sorted_by_score = sorted(topics, key=lambda x: topic.score, reverse=True)
+        top_twenty = sorted_by_score[0:20]
+        return top_twenty
+
+    @staticmethod
     def generate_fake(count=10):
         from random import seed, randint
         import forgery_py
