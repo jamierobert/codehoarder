@@ -312,6 +312,30 @@ class Post(db.Model):
 
     topics = db.relationship('Topic', secondary=relations, backref=db.backref('posts', lazy='dynamic'), lazy='dynamic')
 
+    score = 0
+
+    @staticmethod
+    def get_trending_posts():
+
+        posts = Post.query.all()
+        for post in posts:
+            if post.read_count is None:
+                post.read_count = 0
+            if post.comments.count() is None:
+                post.comments_count = 0
+            if post.up_votes is None:
+                post.up_votes = 0
+            if post.down_votes is None:
+                post.down_votes = 0
+            post.score = ((post.read_count + post.comments.count()) * (post.up_votes + 1)) / (post.down_votes + 1)
+
+        sorted_by_score = sorted(posts, key=lambda x: x.score, reverse=True)
+        for post in sorted_by_score:
+            print(post.title)
+            print(post.score)
+        top_twenty = sorted_by_score[0:20]
+        return top_twenty
+
     @staticmethod
     def generate_fake(count=100):
         from random import seed, randint
