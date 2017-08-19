@@ -8,7 +8,8 @@ from .forms import EditProfileForm, EditProfileAdminForm, PostForm, \
     CommentForm
 from .. import db
 from ..decorators import admin_required, permission_required
-from ..models import Permission, Role, User, Post, Comment, Topic
+from ..models import Permission, Role, User, Post, Comment, Topic, Like, Dislike
+from datetime import datetime
 
 
 @main.after_app_request
@@ -182,6 +183,38 @@ def edit(id):
         return redirect(url_for('.post', id=post.id))
     form.body.data = post.body
     return render_template('edit_post.html', form=form)
+
+
+@main.route('/upvote/<int:id>', methods=['GET', 'POST'])
+@login_required
+def upvote(id):
+    post = Post.query.get_or_404(id)
+    like = Like.query.filter_by(user_id=current_user.id, post_id=id).all()
+    if post.up_votes is None:
+        post.up_votes = 0
+    if not like:
+        post.up_votes += 1
+        like = Like(user_id=current_user.id, post_id=id, timestamp=datetime.utcnow())
+        db.session.add(like)
+        db.session.commit()
+    return redirect(url_for('.index'))
+
+
+@main.route('/downvote/<int:id>', methods=['GET', 'POST'])
+@login_required
+def downvote(id):
+
+    post = Post.query.get_or_404(id)
+    dislike = Dislike.query.filter_by(user_id=current_user.id, post_id=id).all()
+
+    if post.down_votes is None:
+        post.down_votes = 0
+    if not dislike:
+        post.down_votes += 1
+        dislike = Dislike(user_id=current_user.id, post_id=id, timestamp=datetime.utcnow())
+        db.session.add(dislike)
+        db.session.commit()
+    return redirect(url_for('.index'))
 
 
 @main.route('/follow/<username>')
