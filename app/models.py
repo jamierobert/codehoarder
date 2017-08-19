@@ -438,3 +438,22 @@ class Comment(db.Model):
 
 
 db.event.listen(Comment.body, 'set', Comment.on_changed_body)
+
+
+class Like (db.Model):
+
+    __tablename__ = 'likes'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+
+class Dislike (db.Model):
+    __tablename__ = 'dislikes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
