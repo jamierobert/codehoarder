@@ -12,7 +12,10 @@ body {
     color: white;
 }
 
+.alert-warning{
 
+    color: yellow;
+}
 form {
     background-color: #292929;
     border-radius: 12px;
