@@ -330,9 +330,6 @@ class Post(db.Model):
             post.score = ((post.read_count + post.comments.count()) * (post.up_votes + 1)) / (post.down_votes + 1)
 
         sorted_by_score = sorted(posts, key=lambda x: x.score, reverse=True)
-        for post in sorted_by_score:
-            print(post.title)
-            print(post.score)
         top_twenty = sorted_by_score[0:20]
         return top_twenty
 
