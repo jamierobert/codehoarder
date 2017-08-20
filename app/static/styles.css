@@ -137,14 +137,7 @@ a:hover {
     margin: 0 auto;
 }
 
-input {
-    color: yellow;
-    line-height: 2em;
-    background-color: #8426fd;
-    border-radius: 12px;
-    border: #8426fd solid 0.1em;
-    height: 2.5em;
-}
+
 
 .leaderboard {
     background-color: #292929;
