@@ -12,6 +12,7 @@ body {
     color: white;
 }
 
+
 form {
     background-color: #292929;
     border-radius: 12px;
@@ -36,7 +37,7 @@ textarea {
 }
 
 a {
-    color: #8426fd;
+    color: white;
 }
 
 a:hover {
@@ -51,7 +52,22 @@ a:hover {
 .nav-tabs:hover a {
     color: #8426fd;
 }
+.nav-pills:hover a {
+    color: #8426fd;
+}
 
+
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: white;
+    background-color: #8426fd;
+    }
+
+.nav-tabs > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: white;
+    background-color: #8426fd;
+    }
 .row {
     border-bottom: 0.1em solid;
     border-bottom-color: #737373;
