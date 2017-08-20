@@ -54,6 +54,14 @@
                     <a href="{{ url_for('.post', id=post.id) }}#comments">
                         <span class="label label-primary">{{ post.comments.count() }} Comments</span>
                     </a>
+
+                     <span class="label label-primary">{{ post.read_count }} Views</span>
+
+
+                    <span>
+                        <a href="{{ url_for('.upvote', id=post.id) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a> {{ post.up_votes }}
+                        <a href="{{ url_for('.downvote', id=post.id) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a> {{ post.down_votes }}
+                    </span>
                 </div>
 
                 <h4 id="comments">Comments</h4>
