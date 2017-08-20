@@ -29,10 +29,10 @@
     <div class="main-content">
         <article class="post-tabs">
             <ul class="nav nav-tabs">
-                <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a>
+                <li{% if not show_followed %} class="active"{% endif %}><a class="pill-tab" href="{{ url_for('.show_all') }}">All</a>
                 </li>
                 {% if current_user.is_authenticated %}
-                    <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Followers</a>
+                    <li{% if show_followed %} class="active"{% endif %}><a class="pill-tab" href="{{ url_for('.show_followed') }}">Followers</a>
                     </li>
                 {% endif %}
             </ul>
@@ -42,8 +42,8 @@
         <aside class="sidebar-right-index">
             <h5>Trending:</h5>
             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#posts">Topics</a></li>
-                <li><a data-toggle="pill" href="#topics">Articles</a>
+                <li class="active"><a data-toggle="pill" class="pill-tab" href="#posts">Articles</a></li>
+                <li><a data-toggle="pill" class="pill-tab" href="#topics">Topics</a>
                 </li>
             </ul>
 
