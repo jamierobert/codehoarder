@@ -52,7 +52,14 @@
         </div>
     </div>
     <h3>Posts by {{ user.username }}</h3>
-    {% include '_posts.html' %}
+
+    <article class="post-tabs">
+        <ul class="nav nav-tabs">
+
+        </ul>
+        {% include '_posts.html' %}
+    </article>
+
     {% if pagination %}
         <div class="pagination">
             {{ macros.pagination_widget(pagination, '.user', username=user.username) }}
