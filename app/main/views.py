@@ -5,7 +5,7 @@ from flask_sqlalchemy import get_debug_queries
 
 from . import main
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm, \
-    CommentForm
+    CommentForm, ContactForm
 from .. import db
 from ..decorators import admin_required, permission_required
 from ..models import Permission, Role, User, Post, Comment, Topic, Like, Dislike
@@ -113,6 +113,32 @@ def get_recommended_for_you(id):
             if post not in recommended and post.id != id:
                 recommended.append(post)
     return recommended
+
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html', form=form)
+        else:
+            msg = Message(form.subject.data, sender='contact@example.com', recipients=['your_email@example.com'])
+            msg.body = """
+      From: %s <%s>
+      %s
+      """ % (form.name.data, form.email.data, form.message.data)
+            mail.send(msg)
+
+            return 'Form posted.'
+
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
 
 @main.route('/user/<username>')
 def user(username):
