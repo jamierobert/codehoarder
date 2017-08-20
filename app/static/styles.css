@@ -387,19 +387,25 @@ div.pagination {
 }
 
 .pagination li.active a {
-    background-color: #8426fd;
+    background-color: #2a2a2a;
     color: white;
     border: white solid 0.1em;
 }
 .pagination li:focus a {
-    background-color: #8426fd;
+    background-color: #2a2a2a;
     color: white;
     border: white solid 0.1em;
 }
 
 .pagination li:hover:not(.active) a {
-    background-color: #8426fd;
+    background-color: #1a1a1a;
     color: white;
+}
+
+.pagination li:hover.active a {
+    background-color: #1a1a1a;
+    color: white;
+    border: white solid 0.1em;
 }
 
 /*Pagedown*/
