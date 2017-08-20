@@ -10,7 +10,11 @@ from .. import db
 from ..decorators import admin_required, permission_required
 from ..models import Permission, Role, User, Post, Comment, Topic, Like, Dislike
 from datetime import datetime
+from itertools import chain
 
+from werkzeug.contrib.cache import SimpleCache
+
+cache = SimpleCache()
 
 @main.after_app_request
 def after_request(response):
@@ -44,20 +48,26 @@ def index():
                     image=form.image.data,
                     body=form.body.data,
                     author=current_user._get_current_object())
-        db.session.add(post)
+
         topics = form.topics.data
         clean_topics = "".join(topics.split())
         topics_list = clean_topics.split(',')
         capitalized = [topic.capitalize() for topic in topics_list]
 
-        query = db.session.query(Topic).all()
         for topic in capitalized:
-            if topic in query:
-                post.topics.append(topic)
+            exists = Topic.query.filter_by(topic=topic).all()
+            if exists:
+                post.topics.append(exists[0])
+
             else:
                 new_topic = Topic(topic=topic)
                 post.topics.append(new_topic)
+
+        db.session.add(post)
+        db.session.commit()
+
         return redirect(url_for('.index'))
+
     page = request.args.get('page', 1, type=int)
     show_followed = False
     if current_user.is_authenticated:
@@ -70,12 +80,39 @@ def index():
         page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False)
     posts = pagination.items
-    popular_posts = Post.get_trending_posts()
-    popular_topics = Topic.get_trending_topics()
+    popular_posts = get_popular_posts()
+    popular_topics = get_popular_topics()
 
     return render_template('index.html', popular_posts=popular_posts, popular_topics=popular_topics, form=form,
                            posts=posts, show_followed=show_followed, pagination=pagination)
 
+
+def get_popular_posts():
+    popular_posts = cache.get('popular-posts')
+    if popular_posts is None:
+        popular_posts = Post.get_trending_posts()
+        cache.set('popular-posts', popular_posts, timeout=60 * 60)
+    return popular_posts
+
+
+def get_popular_topics():
+    popular_topics = cache.get('popular-topics')
+    if popular_topics is None:
+        popular_topics = Topic.get_trending_topics()
+        cache.set('popular-topics', popular_topics, timeout=60 * 60)
+    return popular_topics
+
+
+def get_recommended_for_you(id):
+    original_post = Post.query.get_or_404(id)
+    topics = original_post.topics.all()
+    recommended = []
+    for topic in topics:
+        all_posts = topic.posts.all()
+        for post in all_posts:
+            if post not in recommended and post.id != id:
+                recommended.append(post)
+    return recommended
 
 @main.route('/user/<username>')
 def user(username):
@@ -163,7 +200,10 @@ def post(id):
         page, per_page=current_app.config['FLASKY_COMMENTS_PER_PAGE'],
         error_out=False)
     comments = pagination.items
-    return render_template('post.html', posts=[post], form=form,
+    popular_posts = get_popular_posts()
+    popular_topics = get_popular_topics()
+    recommended_for_you = get_recommended_for_you(id)
+    return render_template('post.html', posts=[post],recommended_for_you=recommended_for_you,popular_posts=popular_posts,popular_topics=popular_topics, form=form,
                            comments=comments, pagination=pagination)
 
 
