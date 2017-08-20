@@ -244,12 +244,19 @@ def edit(id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.sub_title = form.sub_title.data
-        post.body = form.body.data
         post.image = form.image.data
         post.body = form.body.data
         db.session.add(post)
         flash('The post has been updated.')
         return redirect(url_for('.post', id=post.id))
+    form.title.data = post.title
+    form.sub_title.data = post.sub_title
+    form.image.data = post.image
+    topic_data = ""
+    for topic in post.topics:
+        topic_data += topic.topic + ","
+
+    form.topics.data = topic_data
     form.body.data = post.body
     return render_template('edit_post.html', form=form)
 
