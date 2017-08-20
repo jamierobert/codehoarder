@@ -164,6 +164,16 @@ a:hover {
     border-radius: 25px;
     position: relative;
 }
+
+.profile-post-tabs {
+    width: 100%;
+    background-color: #292929;
+    padding: 3em;
+    border-radius: 25px;
+
+}
+
+
 .post-tabs:before {
     content: '';
     position: absolute;
