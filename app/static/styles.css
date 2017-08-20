@@ -5,6 +5,7 @@ html {
     height: 100%;
     margin: 0 auto;
     max-width: 1366px;
+    color: white;
 }
 
 body {
@@ -44,6 +45,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+
 }
 .navbar-brand {
     font-family: 'Audiowide', cursive;
@@ -109,6 +111,10 @@ textarea {
 }
 .article-form {
     width: 50%;
+}
+.login-form {
+    padding-top: 2em;
+    width: 33%;
 }
 
 /*============== Positional ===============*/
@@ -522,6 +528,10 @@ div.flask-pagedown-preview h3 {
         padding-top: 10px;
         padding-bottom: 10px;
     }
+    .navbar-brand {
+    font-family: 'Audiowide', cursive;
+    font-size: 2.5em;
+}
 }
 
 /* Extra Small Devices, Phones */
