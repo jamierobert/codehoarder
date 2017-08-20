@@ -101,7 +101,12 @@ a:hover {
     font-size: 3em;
 }
 
+
 .centered {
+    margin: 0 auto;
+}
+.width-eighty{
+    width: 68%;
     margin: 0 auto;
 }
 
