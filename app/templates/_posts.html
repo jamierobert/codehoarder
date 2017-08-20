@@ -23,7 +23,7 @@
                     </span>
                         <div class="post-title title-1"><h3>{{ post.title }}</h3></div>
                         <div class="post-image">
-                            <img src="static/{{ post.image }}" class="center-block img-responsive img-rounded"
+                            <img src="{{ url_for('static', filename=post.image)}}" class="center-block img-responsive img-rounded"
                                  alt="image2"
                                  width=900px height=100px/>
                         </div>
