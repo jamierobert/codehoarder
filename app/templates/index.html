@@ -9,7 +9,7 @@
     </div>
     <div>
         {% if current_user.can(Permission.MODERATE_COMMENTS) %}
-            <form class="form article-form" method="POST">
+            <form class="form article-form" method="POST" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
                 {{ form.title.label(style="height: 1em;") }}
                 {{ form.title() }}
@@ -21,6 +21,7 @@
                 {{ form.image() }}
                 {{ form.body.label(style="height: 1em; ") }}
                 {{ form.body () }}
+                <input type="file">
                 <input type="submit" value="Post">
             </form>
         {% endif %}
