@@ -9,7 +9,7 @@
 
 body {
     background-color: rgba(17, 17, 17, 0.96);
-    color: #737373;
+    color: white;
 }
 
 form {
@@ -32,11 +32,11 @@ textarea {
     width: 100%;
     border-radius: 10px;
     resize: none;
-    color: grey;
+    color: #1d1d1d;
 }
 
 a {
-    color: grey;
+    color: #8426fd;
 }
 
 a:hover {
@@ -49,7 +49,7 @@ a:hover {
 }
 
 .nav-tabs:hover a {
-    color: grey;
+    color: #8426fd;
 }
 
 .row {
@@ -96,11 +96,6 @@ a:hover {
     color: white;
 }
 
-/*a:link{*/
-/*color: yellow;*/
-/*}a:link{*/
-/*color: yellow;*/
-/*}*/
 .navbar-brand {
     font-family: 'Audiowide', cursive;
     font-size: 3em;
@@ -233,16 +228,6 @@ input {
     width: 0;
 }
 
-.post-tabs:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 92.4%;
-    border-bottom: 80px solid rgb(26, 26, 26);
-    border-left: 80px solid #292929;
-    width: 0;
-}
-
 .sidebar-right-index {
     background-color: #292929;
     width: 20%;
@@ -262,15 +247,6 @@ input {
     width: 0;
 }
 
-.sidebar-right-index:after {
-    content: '';
-    position: relative;
-    bottom: 0;
-    left: -2em;
-    border-bottom: 30px solid rgb(26, 26, 26);
-    border-right: 30px solid #292929;
-    width: 0;
-}
 
 .main-article {
     width: 48%;
@@ -382,10 +358,15 @@ div.pagination {
 }
 
 .pagination > li > a, .pagination > li > span {
-    background-color: black;
+    background-color: #232323;
 }
 
 .pagination li.active a {
+    background-color: #8426fd;
+    color: white;
+    border: white solid 0.1em;
+}
+.pagination li:focus a {
     background-color: #8426fd;
     color: white;
     border: white solid 0.1em;
