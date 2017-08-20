@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %} About {% endblock %}
+
+{% block page_content %}
+
+<h2>Contact</h2>
+  <form class="form-horizontal article-form" action="{{ url_for('main.contact') }}" method=post>
+    {{ form.hidden_tag() }}
+
+    {{ form.name.label }}
+    {{ form.name }}
+
+    {{ form.email.label }}
+    {{ form.email }}
+
+    {{ form.subject.label }}
+    {{ form.subject }}
+
+    {{ form.message.label }}
+    {{ form.message }}
+
+    {{ form.submit }}
+  </form>
+
+{% endblock %}
