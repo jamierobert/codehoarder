@@ -10,6 +10,14 @@
     <div class="posts container-fluid">
         <aside class="sidebar-left">
             <h5>Recommended for you:</h5>
+            <ol>
+                {% for post in recommended_for_you %}
+                    <li>{{ post.title }}</li>
+                {% endfor %}
+
+            </ol>
+
+
         </aside>
 
         {% for post in posts %}
@@ -72,13 +80,26 @@
 
             </div>
         {% endfor %}
+
+
         <aside class="sidebar-right">
             <h5>Trending:</h5>
-            <ul class="nav nav-tabs">
-                <li><a href="{{ url_for('.show_all') }}">Topics</a></li>
-                <li><a href="{{ url_for('.show_followed') }}">Articles</a></li>
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#posts">Topics</a></li>
+                <li><a data-toggle="pill" href="#topics">Articles</a>
+                </li>
             </ul>
+
+            <div class="tab-content">
+                <div id="posts" class="tab-pane fade in active">
+                    {% include 'top_twenty_posts.html' %}
+                </div>
+                <div id="topics" class="tab-pane fade">
+                    {% include 'top_twenty_topics.html' %}
+                </div>
+            </div>
         </aside>
+
     </div>
 {% endblock %}
 
