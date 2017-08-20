@@ -1,3 +1,29 @@
+
+
+/* ================ Main ================ */
+html {
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1366px;
+
+}
+
+body {
+    position: relative;
+    padding-bottom: 5em;
+    min-height: 100%;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin-top: 5em;
+    background-color: rgba(17, 17, 17, 0.96);
+    color: white;
+
+}
+
+/*=============== Main Nav =================*/
+
 .navbar {
     background-color: #000000;
     position: fixed;
@@ -6,190 +32,50 @@
     left: 0;
     width: 100%;
 }
+.navbar-brand {
+    font-family: 'Audiowide', cursive;
+    font-size: 3em;
+}
+#logo {
+    color: yellow;
+}
 
-body {
-    background-color: rgba(17, 17, 17, 0.96);
+ul.dropdown-menu, #dropdown1 {
+    background-color: #2a2a2a;
     color: white;
+
+}
+
+ul.dropdown-menu, #dropdown2 {
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+ul.dropdown-menu, #dropdown3 {
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+
+/*================= Grid =====================*/
+.row {
+    border-bottom: 0.1em solid;
+    border-bottom-color: #737373;
+}
+.col-sm-4 {
+    padding: 1em;
+    overflow: hidden;
 }
 
 .alert-warning{
 
     color: yellow;
 }
-form {
-    background-color: #292929;
-    border-radius: 12px;
-    padding: 2em;
-    margin-bottom: 1em;
-}
 
-.article-form {
-    width: 50%;
-}
-
-textarea {
-    height: 2em;
-    background: white;
-    border: grey solid 0.1em;
-    display: inline-block;
-    min-height: 2em;
-    width: 100%;
-    border-radius: 10px;
-    resize: none;
-    color: #2a2a2a;
-}
-
-a {
-    color: white;
-}
-
-a:hover {
-    color: yellow;
-    text-decoration: none;
-}
-
-#logo {
-    color: yellow;
-}
-
-
-
-.nav-pills a:hover{
-    color: #1a1a1a;
-}
-
-.nav-tabs a:hover{
-    color: #1a1a1a;
-
-}
-.nav-pills .pill-tab:hover{
-    border: white;
-}
-
-
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    color: white;
-    background-color: #2a2a2a !important;
-    border: solid white 0.1em;
-    }
-
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
-    color: white;
-    background-color: #2a2a2a;
-    }
-
-
-.row {
-    border-bottom: 0.1em solid;
-    border-bottom-color: #737373;
-}
-
-.seperator {
-    width: 100%
-}
-
-.btn-default {
-    background-color: #2a2a2a;
-    color: white;ß
-}
-
-.btn-default:hover {
-    background-color: #232323;
-    color: white;
-}
-
-.btn-danger {
-    background-color: red;
-
-}
-
-.btn-danger:hover {
-    background-color: red;
-    color: yellow;
-}
-
-.label-primary {
-    background-color: #2a2a2a;
-}
-
-.label-default {
-    background-color: #8426fd;
-    color: yellow;
-
-}
-
-.post-author a {
-    color: white;
-}
-
-.navbar-brand {
-    font-family: 'Audiowide', cursive;
-    font-size: 3em;
-}
-
-
-.centered {
-    margin: 0 auto;
-}
-.width-eighty{
-    width: 68%;
-    margin: 0 auto;
-}
-
-
-
-.leaderboard {
-    background-color: #292929;
-    width: 100%;
-    height: 9em;
-    border-radius: 12px;
-
-}
-
-.leaderboard:before {
-    content: '';
-    position: relative;
-    top: 2em;
-    right: -97.85%;
-    border-top: 30px solid rgb(26, 26, 26);
-    border-left: 30px solid #292929;
-    width: 0;
-}
-
-.leaderboard:after {
-    content: '';
-    position: relative;
-    bottom: 0.7em;
-    left: 0;
-    border-bottom: 30px solid rgb(26, 26, 26);
-    border-right: 30px solid #292929;
-    width: 0;
-}
-
-.col-sm-4 {
-    padding: 1em;
-    overflow: hidden;
-}
-
-.alert {
+.alert{
     background-color: #000000;
-}
-
-.profile-thumbnail {
-    position: absolute;
-}
-
-.profile-header {
-    min-height: 26em;
-    color: white;
-    margin-left: 12em;
-}
-
-.posts {
-    padding: 4em;
-    margin: 1em;
-    background-color: #292929;
 }
 
 .jumbotron {
@@ -204,19 +90,71 @@ a:hover {
 
 }
 
-/*Posts*/
 
-.post-title {
-    height: 5.3em;
-    overflow: hidden;
+
+/*=============== Forms ==================*/
+
+form {
+    background-color: #292929;
+    border-radius: 12px;
+    padding: 2em;
+    margin-bottom: 1em;
+}
+
+
+
+textarea {
+    height: 2em;
+    background: white;
+    border: grey solid 0.1em;
+    display: inline-block;
+    min-height: 2em;
+    width: 100%;
+    border-radius: 10px;
+    resize: none;
+    color: #2a2a2a;
+}
+.article-form {
+    width: 50%;
+}
+
+/*============== Positional ===============*/
+
+.centered {
+    margin: 0 auto;
+}
+.width-eighty{
+    width: 68%;
+    margin: 0 auto;
+}
+
+
+
+
+/*================= Links ===================*/
+
+a {
     color: white;
 }
 
-.post-subtitle {
-    height: 3em;
-    overflow: hidden;
-    color: white;
+a:hover {
+    color: yellow;
+    text-decoration: none;
 }
+/*============== Profile Page ==============*/
+
+
+.profile-thumbnail {
+    position: absolute;
+}
+
+.profile-header {
+    min-height: 26em;
+    color: white;
+    margin-left: 12em;
+}
+
+
 
 .main-content {
     width: 100%;
@@ -226,23 +164,14 @@ a:hover {
 
 }
 
-.post-content {
-    color: white;
-}
-
 .post-tabs {
     width: 75%;
     float: left;
     background-color: #292929;
     padding: 1em;
     border-radius: 25px;
-}
-
-.post-tabs {
-
     position: relative;
 }
-
 .post-tabs:before {
     content: '';
     position: absolute;
@@ -252,7 +181,6 @@ a:hover {
     border-left: 80px solid #292929;
     width: 0;
 }
-
 .sidebar-right-index {
     background-color: #292929;
     width: 20%;
@@ -272,6 +200,52 @@ a:hover {
     width: 0;
 }
 
+
+
+/*=============== Posts ===================*/
+
+.posts {
+    padding: 0em;
+    margin: 1em;
+    background-color: #292929;
+    border-radius: 25px;
+}
+
+.post-title {
+    height: 5.3em;
+    overflow: hidden;
+    color: white;
+}
+
+.post-subtitle {
+    height: 3em;
+    overflow: hidden;
+    color: white;
+}
+
+div.post-tabs ul.posts {
+    margin: 0px;
+    border-top: none;
+}
+
+
+div.post-author {
+    font-weight: bold;
+    margin-left: 3.5em;
+    color: white;
+
+}
+
+div.post-date {
+    margin-left: 3.5em;
+}
+
+div.post-content {
+    color: white;
+
+}
+
+/*================== Post Page ====================*/
 
 .main-article {
     width: 48%;
@@ -306,33 +280,7 @@ a:hover {
 
 }
 
-.posts {
-    padding: 0px;
-    border-radius: 25px;
-}
-
-div.post-tabs ul.posts {
-    margin: 0px;
-    border-top: none;
-}
-
-div.post-author {
-    font-weight: bold;
-    margin-left: 3.5em;
-
-}
-
-div.post-date {
-    margin-left: 3.5em;
-}
-
-div.post-content {
-
-    min-height: 4.8em;
-
-}
-
-/*Comments*/
+/*================== Comments ===================*/
 ul.comments {
     list-style-type: none;
     padding: 0px;
@@ -374,7 +322,8 @@ div.comment-form {
     margin: 1.6em 0px 1.6em 0;
 }
 
-/*Pagination*/
+/* ================ Pagination ==================*/
+
 div.pagination {
     width: 100%;
     text-align: center;
@@ -408,7 +357,10 @@ div.pagination {
     border: white solid 0.1em;
 }
 
-/*Pagedown*/
+
+
+/* ================== Pagedown ===================*/
+
 div.flask-pagedown-preview {
     margin: 10px 0px 10px 0px;
     border: 1px solid #6e6d70;
@@ -428,7 +380,7 @@ div.flask-pagedown-preview h3 {
     font-size: 120%;
 }
 
-/*Fonts*/
+/* ================ Fonts ===================*/
 .post-body h1 {
     font-size: 140%;
 }
@@ -441,33 +393,70 @@ div.flask-pagedown-preview h3 {
     font-size: 120%;
 }
 
-.table.followers tr {
-    border-bottom: 1px solid #6e6d70;
+
+
+
+/*=========== Buttons and labels ============*/
+
+.btn-default {
+    background-color: #2a2a2a;
+    color: white;
 }
 
-/* Specifically for Footer */
+.btn-default:hover {
+    background-color: #232323;
+    color: white;
+}
 
-html {
-    height: 100%;
-    margin: 0 auto;
-    max-width: 1366px;
+.btn-danger {
+    background-color: red;
 
 }
 
-body {
-    position: relative;
-    padding-bottom: 5em;
-    min-height: 100%;
-    width: 100%;
-    left: 0px;
-    right: 0px;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    margin-top: 5em;
+.btn-danger:hover {
+    background-color: red;
+    color: yellow;
+}
 
+.label-primary {
+    background-color: #2a2a2a;
+}
+
+.label-default {
+    background-color: #8426fd;
+    color: yellow;
+
+}
+
+/*=========== Pill and Tabs ==============*/
+
+.nav-pills a:hover{
+    color: #1a1a1a;
+}
+
+.nav-tabs a:hover{
+    color: #1a1a1a;
+
+}
+.nav-pills .pill-tab:hover{
+    border: white;
+}
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: white;
+    background-color: #2a2a2a !important;
+    border: solid white 0.1em;
+}
+
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    color: white;
+    background-color: #2a2a2a;
 }
 
 /**
- * Footer Styles
+ * =============== Footer Styles =================
  */
 
 .footer {
@@ -481,23 +470,10 @@ body {
     background-color: black;
     width: 100%;
 }
+/*================== Followers =====================*/
 
-ul.dropdown-menu, #dropdown1 {
-    background-color: #2a2a2a;
-    color: white;
-
-}
-
-ul.dropdown-menu, #dropdown2 {
-    background-color: #2a2a2a;
-    color: white;
-
-}
-
-ul.dropdown-menu, #dropdown3 {
-    background-color: #2a2a2a;
-    color: white;
-
+.table.followers tr {
+    border-bottom: 1px solid #6e6d70;
 }
 
 /*==========  Non-Mobile First Method  ==========*/
@@ -578,3 +554,34 @@ ul.dropdown-menu, #dropdown3 {
 
 }
 
+
+
+/*=============== Styles for AD (This has been removed but will return)==============*/
+
+.leaderboard {
+    background-color: #292929;
+    width: 100%;
+    height: 9em;
+    border-radius: 12px;
+
+}
+
+.leaderboard:before {
+    content: '';
+    position: relative;
+    top: 2em;
+    right: -97.85%;
+    border-top: 30px solid rgb(26, 26, 26);
+    border-left: 30px solid #292929;
+    width: 0;
+}
+
+.leaderboard:after {
+    content: '';
+    position: relative;
+    bottom: 0.7em;
+    left: 0;
+    border-bottom: 30px solid rgb(26, 26, 26);
+    border-right: 30px solid #292929;
+    width: 0;
+}
