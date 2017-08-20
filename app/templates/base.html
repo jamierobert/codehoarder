@@ -80,6 +80,10 @@
     <script>
         autosize(document.querySelectorAll('textarea'));
 
+        $(".alert").delay(4000).slideUp(200, function() {
+            $(this).alert('close');
+        });
+
     </script>
 
 {% endblock %}
