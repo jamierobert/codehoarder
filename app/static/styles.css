@@ -90,14 +90,13 @@ a:hover {
 }
 
 .btn-default {
-    background-color: #8426fd;
-    color: yellow;
-    border: #8426fd;
+    background-color: #2a2a2a;
+    color: white;ß
 }
 
 .btn-default:hover {
-    background-color: #7c2eff;
-    color: yellow;
+    background-color: #232323;
+    color: white;
 }
 
 .btn-danger {
