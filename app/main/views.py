@@ -261,8 +261,20 @@ def edit(id):
     return render_template('edit_post.html', form=form)
 
 
-@main.route('/upvote/<int:id>', methods=['GET', 'POST'])
+@main.route('/index/upvote/<int:id>', methods=['GET', 'POST'])
 @login_required
+def index_upvote(id):
+    upvote(id)
+    return redirect(request.referrer)
+
+
+@main.route('/index/downvote/<int:id>', methods=['GET', 'POST'])
+@login_required
+def index_downvote(id):
+    downvote(id)
+    return redirect(request.referrer)
+
+
 def upvote(id):
     post = Post.query.get_or_404(id)
     like = Like.query.filter_by(user_id=current_user.id, post_id=id).all()
@@ -273,13 +285,9 @@ def upvote(id):
         like = Like(user_id=current_user.id, post_id=id, timestamp=datetime.utcnow())
         db.session.add(like)
         db.session.commit()
-    return redirect(url_for('.index'))
 
 
-@main.route('/downvote/<int:id>', methods=['GET', 'POST'])
-@login_required
 def downvote(id):
-
     post = Post.query.get_or_404(id)
     dislike = Dislike.query.filter_by(user_id=current_user.id, post_id=id).all()
 
@@ -290,7 +298,6 @@ def downvote(id):
         dislike = Dislike(user_id=current_user.id, post_id=id, timestamp=datetime.utcnow())
         db.session.add(dislike)
         db.session.commit()
-    return redirect(url_for('.index'))
 
 
 
