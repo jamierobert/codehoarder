@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% import "_macros.html" as macros %}
 
-{% block title %} About {% endblock %}
+{% block title %} Contact {% endblock %}
 
 {% block page_content %}
 
-<h2>Contact</h2>
+    <div class="page-header">
+        <h1>Contact</h1>
+    </div>
+
+
   <form class="form-horizontal article-form" action="{{ url_for('main.contact') }}" method=post>
     {{ form.hidden_tag() }}
 
