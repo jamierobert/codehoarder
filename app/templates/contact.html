@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% import "_macros.html" as macros %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block title %} Contact {% endblock %}
 
 {% block page_content %}
@@ -8,24 +8,7 @@
     <div class="page-header">
         <h1>Contact</h1>
     </div>
-
-
-  <form class="form-horizontal article-form" action="{{ url_for('main.contact') }}" method=post>
-    {{ form.hidden_tag() }}
-
-    {{ form.name.label }}
-    {{ form.name }}
-
-    {{ form.email.label }}
-    {{ form.email }}
-
-    {{ form.subject.label }}
-    {{ form.subject }}
-
-    {{ form.message.label }}
-    {{ form.message }}
-
-    {{ form.submit }}
-  </form>
-
+    <div class="centered email-form">
+        {{ wtf.quick_form(form) }}
+    </div>
 {% endblock %}

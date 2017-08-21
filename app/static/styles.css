@@ -121,6 +121,12 @@ textarea {
     width: 33%;
 }
 
+.email-form {
+    padding-top: 2em;
+    width: 50%;
+}
+
+
 /*============== Positional ===============*/
 
 .centered {
@@ -432,8 +438,8 @@ div.flask-pagedown-preview h3 {
 .label-default {
     background-color: #8426fd;
     color: yellow;
-
 }
+
 
 /*=========== Pill and Tabs ==============*/
 

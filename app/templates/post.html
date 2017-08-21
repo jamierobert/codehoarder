@@ -67,15 +67,7 @@
                 <h4 id="comments">Comments</h4>
                 {% if current_user.is_authenticated %}
                     <div class="comment-form">
-                        <form class="form" method="POST">
-                            {{ form.csrf_token }}
-                            {{ form.hidden_tag() }}
-                            <div class=form-group">
-                                {{ form.body.label(style="height: 1em;") }}
-                                {{ form.body() }}
-                                <input type="submit" value="Post" class="btn">
-                            </div>
-                        </form>
+                        {{ wtf.quick_form(form) }}
                     </div>
                 {% endif %}
                 {% include '_comments.html' %}
