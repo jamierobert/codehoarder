@@ -54,6 +54,10 @@ body {
 #logo {
     color: yellow;
 }
+.main-nav-links{
+    color: white !important;
+
+}
 
 .width-eighty{
     max-width: 1366px;
@@ -420,8 +424,9 @@ div.flask-pagedown-preview h3 {
     color: yellow;
 }
 
-.label-primary {
+.label-primary, .btn-primary {
     background-color: #2a2a2a;
+    border: white solid 0.1em;
 }
 
 .label-default {
