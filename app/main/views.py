@@ -9,10 +9,12 @@ from .forms import EditProfileForm, EditProfileAdminForm, PostForm, \
 from .. import db
 from ..decorators import admin_required, permission_required
 from ..models import Permission, Role, User, Post, Comment, Topic, Like, Dislike
-from datetime import datetime
-from itertools import chain
+from ..email import email_me
 
+from datetime import datetime
 from werkzeug.contrib.cache import SimpleCache
+
+from app import images
 
 cache = SimpleCache()
 
@@ -43,11 +45,15 @@ def index():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and \
             form.validate_on_submit():
+
+        filename = images.save(request.files['image'])
+        url = images.url(filename)
         post = Post(title=form.title.data,
                     sub_title=form.sub_title.data,
-                    image=form.image.data,
                     body=form.body.data,
-                    author=current_user._get_current_object())
+                    author=current_user._get_current_object(),
+                    image_url=url,
+                    image_filename=filename)
 
         topics = form.topics.data
         clean_topics = "".join(topics.split())
