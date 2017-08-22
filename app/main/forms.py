@@ -69,8 +69,8 @@ class CommentForm(FlaskForm):
 
 
 class ContactForm(FlaskForm):
-  name = StringField("Name")
-  email = StringField("Email")
-  subject = StringField("Subject")
-  message = TextAreaField("Message")
-  submit = SubmitField("Send")
+    name = StringField("Name",[DataRequired("Please enter your name.")])
+    email = StringField("Email", [DataRequired("Please enter your email."), Email("This must be a valid email address")])
+    subject = StringField("Subject", [DataRequired("Please enter a subject")])
+    message = TextAreaField("Message", [DataRequired("Please enter you message")])
+    submit = SubmitField("Send", [DataRequired()])
