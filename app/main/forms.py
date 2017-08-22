@@ -6,6 +6,9 @@ from wtforms import ValidationError
 from wtforms.validators import DataRequired, Length, Email, Regexp
 
 from ..models import Role, User
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from app import images
+
 
 
 class NameForm(FlaskForm):
@@ -54,9 +57,9 @@ class EditProfileAdminForm(FlaskForm):
 class PostForm(FlaskForm):
     title = PageDownField("Title", validators=[DataRequired()])
     sub_title = PageDownField("Subtitle", validators=[DataRequired()])
-    image = PageDownField("Image", validators=[DataRequired()])
     topics = PageDownField("Topics", validators=[DataRequired()])
     body = PageDownField("Body", validators=[DataRequired()])
+    image = FileField('Image', validators=[FileRequired(), FileAllowed(images, 'Images only!')])
     submit = SubmitField('Submit')
 
 
