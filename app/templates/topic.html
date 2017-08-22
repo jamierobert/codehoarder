@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %} Contact {% endblock %}
+
+{% block page_content %}
+    <header class="page-header">
+        <h1>{{ topic.topic }}</h1>
+    </header>
+    <section class="post-tabs">
+            <ul class="nav nav-tabs">
+                <li{% if not show_followed %} class="active"{% endif %}><a class="pill-tab" href="{{ url_for('.show_all') }}">All</a>
+                </li>
+                {% if current_user.is_authenticated %}
+                    <li{% if show_followed %} class="active"{% endif %}><a class="pill-tab" href="{{ url_for('.show_followed') }}">Followers</a>
+                    </li>
+                {% endif %}
+            </ul>
+            {% include '_posts.html' %}
+    </section>
+{% endblock %}
