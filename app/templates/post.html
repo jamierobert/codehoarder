@@ -14,60 +14,50 @@
                 {% for post in recommended_for_you %}
                     <li>{{ post.title }}</li>
                 {% endfor %}
-
             </ol>
-
-
         </aside>
-
         {% for post in posts %}
-
-            <div class="post-content main-article">
+            <section class="post-content main-article">
                 <div class="post-thumbnail">
                     <a href="{{ url_for('.user', username=post.author.username) }}">
                         <img class="img-rounded profile-thumbnail" src="{{ post.author.gravatar(size=40) }}">
                     </a>
                 </div>
                 <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
-                <div class="post-author"><a
-                        href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a>
-                </div>
-                <div class="post-title"><h3>{{ post.title }}</h3></div>
 
-                <div class="post-main"><p> {% filter markdown %}
+                <a class="post-author" rel="author" href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a>
+                <h3 class="post-title">{{ post.title }}</h3>
+                <article class="post-main">
+                    {% filter markdown %}
                     {{ post.body | safe }}
-                {% endfilter %}</p></div>
-
+                    {% endfilter %}
+                </article>
                 <div class="post-footer">
-                    {% if current_user == post.author %}
-                        <a href="{{ url_for('.edit', id=post.id) }}">
-                            <span class="label label-primary">Edit</span>
-                        </a>
-                    {% elif current_user.is_administrator() %}
-                        <a href="{{ url_for('.edit', id=post.id) }}">
-                            <span class="label label-danger">Edit [Admin]</span>
-                        </a>
-                    {% endif %}
+                {% if current_user == post.author %}
+                    <a href="{{ url_for('.edit', id=post.id) }}">
+                        <span class="label label-primary">Edit</span>
+                    </a>
+                {% elif current_user.is_administrator() %}
+                    <a href="{{ url_for('.edit', id=post.id) }}">
+                        <span class="label label-danger">Edit [Admin]</span>
+                    </a>
+                {% endif %}
                     <a href="{{ url_for('.post', id=post.id) }}">
                         <span class="label label-default">Read More</span>
                     </a>
                     <a href="{{ url_for('.post', id=post.id) }}#comments">
                         <span class="label label-primary">{{ post.comments.count() }} Comments</span>
                     </a>
+                    <span class="label label-primary">{{ post.read_count }} Views</span>
+                    <span>
+                        <a href="{{ url_for('.upvote', id=post.id) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a> {{ post.up_votes }}
+                        <a href="{{ url_for('.downvote', id=post.id) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a> {{ post.down_votes }}
+                    </span>
                 </div>
-
                 <h4 id="comments">Comments</h4>
                 {% if current_user.is_authenticated %}
                     <div class="comment-form">
-                        <form class="form" method="POST">
-                            {{ form.csrf_token }}
-                            {{ form.hidden_tag() }}
-                            <div class=form-group">
-                                {{ form.body.label(style="height: 1em;") }}
-                                {{ form.body(style="height: 2.5em; width: 70%; background-color:grey; border: white solid 0.1em; border-radius: 10px; resize: none; color: white;") }}
-                                <input type="submit" value="Post" class="btn">
-                            </div>
-                        </form>
+                        {{ wtf.quick_form(form) }}
                     </div>
                 {% endif %}
                 {% include '_comments.html' %}
@@ -77,11 +67,8 @@
                         {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=posts[0].id) }}
                     </div>
                 {% endif %}
-
-            </div>
+            </section>
         {% endfor %}
-
-
         <aside class="sidebar-right">
             <h5>Trending:</h5>
             <ul class="nav nav-pills">
@@ -89,7 +76,6 @@
                 <li><a data-toggle="pill" href="#topics">Articles</a>
                 </li>
             </ul>
-
             <div class="tab-content">
                 <div id="posts" class="tab-pane fade in active">
                     {% include 'top_twenty_posts.html' %}

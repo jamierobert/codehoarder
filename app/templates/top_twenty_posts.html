@@ -1,7 +1,13 @@
 <div>
     <ol>
     {% for post in popular_posts %}
-        <li>{{  post.title }}: {{ post.sub_title }}</li>
+        <li>
+        <article>
+            <a href="{{ url_for('.post', id=post.id) }}"><h5>{{  post.title }}</h5></a>
+
+            <p>{{ post.sub_title }}</p>
+        </article>
+        </li>
     {% endfor %}
     </ol>
 </div>

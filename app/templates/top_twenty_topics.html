@@ -1,7 +1,8 @@
 <div>
     <ol>
     {% for topic in popular_topics %}
-        <li>{{  topic.topic }}:</li>
+        <li>{{  topic.topic }}</li>
+{#        <li><a href="{{ url_for('.topic', id=topic.id) }}">{{  topic.topic }} </a></li>#}
     {% endfor %}
     </ol>
 </div>

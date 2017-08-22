@@ -9,7 +9,7 @@
     </div>
     <div>
         {% if current_user.can(Permission.MODERATE_COMMENTS) %}
-            <form class="form article-form" method="POST">
+            <form href="{{ url_for('.index')}}" class="form article-form" method="POST" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
                 {{ form.title.label(style="height: 1em;") }}
                 {{ form.title() }}
@@ -20,29 +20,29 @@
                 {{ form.image.label(style="height: 10px;") }}
                 {{ form.image() }}
                 {{ form.body.label(style="height: 1em; ") }}
-                {{ form.body () }}
+                {{ form.body() }}
                 <input type="submit" value="Post">
             </form>
         {% endif %}
     </div>
     <div class="main-content">
-        <article class="post-tabs">
+        <section class="post-tabs">
             <ul class="nav nav-tabs">
-                <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a>
+                <li{% if not show_followed %} class="active"{% endif %}><a class="pill-tab" href="{{ url_for('.show_all') }}">All</a>
                 </li>
                 {% if current_user.is_authenticated %}
-                    <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Followers</a>
+                    <li{% if show_followed %} class="active"{% endif %}><a class="pill-tab" href="{{ url_for('.show_followed') }}">Followers</a>
                     </li>
                 {% endif %}
             </ul>
             {% include '_posts.html' %}
-        </article>
+        </section>
 
         <aside class="sidebar-right-index">
             <h5>Trending:</h5>
             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#posts">Topics</a></li>
-                <li><a data-toggle="pill" href="#topics">Articles</a>
+                <li class="active"><a data-toggle="pill" class="pill-tab" href="#posts">Articles</a></li>
+                <li><a data-toggle="pill" class="pill-tab" href="#topics">Topics</a>
                 </li>
             </ul>
 
@@ -62,22 +62,18 @@
             {{ macros.pagination_widget(pagination, '.index') }}
         </div>
     {% endif %}
-    <aside class="leaderboard">
-        <h1>This is an ad</h1>
-    </aside>
+
     {% block footer %}
         <footer class="footer navbar-bottom">
-            <p> Powered by AWS elastic beanstalk, Flask, Docker and Nginx </p>
+            <p> Powered by
+                <a href="https://www.pythonanywhere.com">Python Anywhere</a>,
+                <a href="https://www.docker.com/">Docker </a>
+                and
+                <a href="https://www.nginx.com/resources/wiki/">Nginx</a>
+            </p>
         </footer>
     {% endblock %}
-
-
 {% endblock %}
-
-
-
-
-
 {% block scripts %}
     {{ super() }}
     {{ pagedown.include_pagedown() }}

@@ -5,14 +5,16 @@ from flask_sqlalchemy import get_debug_queries
 
 from . import main
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm, \
-    CommentForm
+    CommentForm, ContactForm
 from .. import db
 from ..decorators import admin_required, permission_required
 from ..models import Permission, Role, User, Post, Comment, Topic, Like, Dislike
-from datetime import datetime
-from itertools import chain
+from ..email import email_me
 
+from datetime import datetime
 from werkzeug.contrib.cache import SimpleCache
+
+from app import images
 
 cache = SimpleCache()
 
@@ -43,11 +45,15 @@ def index():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and \
             form.validate_on_submit():
+
+        filename = images.save(request.files['image'])
+        url = images.url(filename)
         post = Post(title=form.title.data,
                     sub_title=form.sub_title.data,
-                    image=form.image.data,
                     body=form.body.data,
-                    author=current_user._get_current_object())
+                    author=current_user._get_current_object(),
+                    image_url=url,
+                    image_filename=filename)
 
         topics = form.topics.data
         clean_topics = "".join(topics.split())
@@ -113,6 +119,32 @@ def get_recommended_for_you(id):
             if post not in recommended and post.id != id:
                 recommended.append(post)
     return recommended
+
+@main.route('/contact', methods=['GET', 'POST'])
+@login_required
+def contact():
+    form = ContactForm()
+
+    if request.method == 'POST':
+        if not form.validate():
+            flash('All fields are required.')
+            return render_template('contact.html', form=form)
+        else:
+            email_me(form.name.data, form.subject.data, form.email.data, form.message.data)
+            return ('', 204)
+
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+@main.route('/topic/<int:id>')
+def topic (id):
+    topic = Topic.query.get_or_404(id)
+    posts = topic.posts.all()
+    return render_template('topic.html', topic=topic, posts=posts)
 
 @main.route('/user/<username>')
 def user(username):
@@ -218,12 +250,19 @@ def edit(id):
     if form.validate_on_submit():
         post.title = form.title.data
         post.sub_title = form.sub_title.data
-        post.body = form.body.data
         post.image = form.image.data
         post.body = form.body.data
         db.session.add(post)
         flash('The post has been updated.')
         return redirect(url_for('.post', id=post.id))
+    form.title.data = post.title
+    form.sub_title.data = post.sub_title
+    form.image.data = post.image
+    topic_data = ""
+    for topic in post.topics:
+        topic_data += topic.topic + ","
+
+    form.topics.data = topic_data
     form.body.data = post.body
     return render_template('edit_post.html', form=form)
 
@@ -240,13 +279,12 @@ def upvote(id):
         like = Like(user_id=current_user.id, post_id=id, timestamp=datetime.utcnow())
         db.session.add(like)
         db.session.commit()
-    return redirect(url_for('.index'))
+    return redirect(request.referrer)
 
 
 @main.route('/downvote/<int:id>', methods=['GET', 'POST'])
 @login_required
 def downvote(id):
-
     post = Post.query.get_or_404(id)
     dislike = Dislike.query.filter_by(user_id=current_user.id, post_id=id).all()
 
@@ -257,7 +295,8 @@ def downvote(id):
         dislike = Dislike(user_id=current_user.id, post_id=id, timestamp=datetime.utcnow())
         db.session.add(dislike)
         db.session.commit()
-    return redirect(url_for('.index'))
+    return redirect(request.referrer)
+
 
 
 

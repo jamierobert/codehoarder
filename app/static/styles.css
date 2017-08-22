@@ -1,3 +1,47 @@
+
+
+/* ================ Main ================ */
+html {
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1366px;
+
+    color: white;
+}
+
+body {
+    position: relative;
+    padding-bottom: 5em;
+    min-height: 100%;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin-top: 5em;
+    background: rgba(17, 17, 17, 0.96);
+    color: white;
+
+}
+
+.alert-warning{
+    color: yellow;
+    background-color: #000000;
+}
+
+.jumbotron {
+    border-radius: 12px;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    background-image: url(coding.png);
+    width: 100%;
+    height: 10%;
+
+    text-shadow: 1px 1px 1px #ccc;
+}
+
+/*=============== Main Nav =================*/
+
 .navbar {
     background-color: #000000;
     position: fixed;
@@ -5,22 +49,61 @@
     top: 0;
     left: 0;
     width: 100%;
+
+}
+.navbar-brand {
+    font-family: 'Audiowide', cursive;
+    font-size: 3em;
+}
+#logo {
+    color: yellow;
+}
+.main-nav-links{
+    color: white !important;
+
 }
 
-body {
-    background-color: rgba(17, 17, 17, 0.96);
-    color: #737373;
+.width-eighty{
+    max-width: 1366px;
+    margin: 0 auto;
 }
+
+ul.dropdown-menu, #dropdown1 {
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+ul.dropdown-menu, #dropdown2 {
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+ul.dropdown-menu, #dropdown3 {
+    background-color: #2a2a2a;
+    color: white;
+
+}
+
+
+/*================= Grid =====================*/
+.row {
+    border-bottom: 0.1em solid;
+    border-bottom-color: white;
+}
+.col-sm-4 {
+    padding: 1em;
+    overflow: hidden;
+}
+
+/*=============== Forms ==================*/
 
 form {
     background-color: #292929;
     border-radius: 12px;
     padding: 2em;
     margin-bottom: 1em;
-}
-
-.article-form {
-    width: 50%;
 }
 
 textarea {
@@ -32,129 +115,40 @@ textarea {
     width: 100%;
     border-radius: 10px;
     resize: none;
-    color: grey;
+    color: #2a2a2a;
+}
+.article-form {
+    width: 50%;
+}
+.login-form {
+    padding-top: 2em;
+    width: 33%;
 }
 
+.email-form {
+    padding-top: 2em;
+    width: 50%;
+}
+
+
+/*============== Positional ===============*/
+
+.centered {
+    margin: 0 auto;
+}
+
+/*================= Links ===================*/
+
 a {
-    color: grey;
+    color: white;
 }
 
 a:hover {
     color: yellow;
     text-decoration: none;
 }
+/*============== Profile Page ==============*/
 
-#logo {
-    color: yellow;
-}
-
-.nav-tabs:hover a {
-    color: grey;
-}
-
-.row {
-    border-bottom: 0.1em solid;
-    border-bottom-color: #737373;
-}
-
-.seperator {
-    width: 100%
-}
-
-.btn-default {
-    background-color: #8426fd;
-    color: yellow;
-    border: #8426fd;
-}
-
-.btn-default:hover {
-    background-color: #7c2eff;
-    color: yellow;
-}
-
-.btn-danger {
-    background-color: red;
-
-}
-
-.btn-danger:hover {
-    background-color: red;
-    color: yellow;
-}
-
-.label-primary {
-    background-color: #2a2a2a;
-}
-
-.label-default {
-    background-color: #8426fd;
-    color: yellow;
-
-}
-
-.post-author a {
-    color: white;
-}
-
-/*a:link{*/
-/*color: yellow;*/
-/*}a:link{*/
-/*color: yellow;*/
-/*}*/
-.navbar-brand {
-    font-family: 'Audiowide', cursive;
-    font-size: 3em;
-}
-
-.centered {
-    margin: 0 auto;
-}
-
-input {
-    color: yellow;
-    line-height: 2em;
-    background-color: #8426fd;
-    border-radius: 12px;
-    border: #8426fd solid 0.1em;
-    height: 2.5em;
-}
-
-.leaderboard {
-    background-color: #292929;
-    width: 100%;
-    height: 9em;
-    border-radius: 12px;
-
-}
-
-.leaderboard:before {
-    content: '';
-    position: relative;
-    top: 2em;
-    right: -97.85%;
-    border-top: 30px solid rgb(26, 26, 26);
-    border-left: 30px solid #292929;
-    width: 0;
-}
-
-.leaderboard:after {
-    content: '';
-    position: relative;
-    bottom: 0.7em;
-    left: 0;
-    border-bottom: 30px solid rgb(26, 26, 26);
-    border-right: 30px solid #292929;
-    width: 0;
-}
-
-.col-sm-4 {
-    padding: 1em;
-    overflow: hidden;
-}
-
-.alert {
-    background-color: #000000;
-}
 
 .profile-thumbnail {
     position: absolute;
@@ -166,37 +160,7 @@ input {
     margin-left: 12em;
 }
 
-.posts {
-    padding: 4em;
-    margin: 1em;
-    background-color: #292929;
-}
 
-.jumbotron {
-    border-radius: 12px;
-    color: white;
-    background-size: cover;
-    background-position: center;
-    background-image: url(coding.png);
-    width: 100%;
-    height: 10%;
-    background-color: #292929;
-
-}
-
-/*Posts*/
-
-.post-title {
-    height: 5.3em;
-    overflow: hidden;
-    color: white;
-}
-
-.post-subtitle {
-    height: 3em;
-    overflow: hidden;
-    color: white;
-}
 
 .main-content {
     width: 100%;
@@ -206,22 +170,23 @@ input {
 
 }
 
-.post-content {
-    color: white;
-}
-
 .post-tabs {
     width: 75%;
     float: left;
     background-color: #292929;
     padding: 1em;
     border-radius: 25px;
-}
-
-.post-tabs {
-
     position: relative;
 }
+
+.profile-post-tabs {
+    width: 100%;
+    background-color: #292929;
+    padding: 3em;
+    border-radius: 25px;
+
+}
+
 
 .post-tabs:before {
     content: '';
@@ -232,24 +197,13 @@ input {
     border-left: 80px solid #292929;
     width: 0;
 }
-
-.post-tabs:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 92.4%;
-    border-bottom: 80px solid rgb(26, 26, 26);
-    border-left: 80px solid #292929;
-    width: 0;
-}
-
 .sidebar-right-index {
     background-color: #292929;
     width: 20%;
     float: left;
     margin-left: 5%;
     border-radius: 25px;
-    padding: 2em;
+    padding: 1em;
 }
 
 .sidebar-right-index:before {
@@ -262,15 +216,55 @@ input {
     width: 0;
 }
 
-.sidebar-right-index:after {
-    content: '';
-    position: relative;
-    bottom: 0;
-    left: -2em;
-    border-bottom: 30px solid rgb(26, 26, 26);
-    border-right: 30px solid #292929;
-    width: 0;
+
+
+/*=============== Posts ===================*/
+
+.posts {
+    padding: 0em;
+    margin: 1em;
+    background-color: #292929;
+    border-radius: 25px;
 }
+.post-topics{
+    padding-top: 2em;
+}
+.post-title {
+    height: 5.3em;
+    overflow: hidden;
+    color: white;
+}
+
+.post-subtitle {
+    height: 3em;
+    overflow: hidden;
+    color: white;
+}
+
+div.post-tabs ul.posts {
+    margin: 0px;
+    border-top: none;
+}
+
+
+.post-author {
+    font-weight: bold;
+    margin-left: 3.5em;
+    color: white;
+    display: block;
+
+}
+
+div.post-date {
+    margin-left: 3.5em;
+}
+
+div.post-content {
+    color: white;
+
+}
+
+/*================== Post Page ====================*/
 
 .main-article {
     width: 48%;
@@ -305,33 +299,7 @@ input {
 
 }
 
-.posts {
-    padding: 0px;
-    border-radius: 25px;
-}
-
-div.post-tabs ul.posts {
-    margin: 0px;
-    border-top: none;
-}
-
-div.post-author {
-    font-weight: bold;
-    margin-left: 3.5em;
-
-}
-
-div.post-date {
-    margin-left: 3.5em;
-}
-
-div.post-content {
-
-    min-height: 4.8em;
-
-}
-
-/*Comments*/
+/*================== Comments ===================*/
 ul.comments {
     list-style-type: none;
     padding: 0px;
@@ -373,7 +341,16 @@ div.comment-form {
     margin: 1.6em 0px 1.6em 0;
 }
 
-/*Pagination*/
+
+/*================about Page ====================*/
+
+.about-text{
+
+    width: 50%;
+
+}
+/* ================ Pagination ==================*/
+
 div.pagination {
     width: 100%;
     text-align: center;
@@ -382,21 +359,35 @@ div.pagination {
 }
 
 .pagination > li > a, .pagination > li > span {
-    background-color: black;
+    background-color: #232323;
 }
 
 .pagination li.active a {
-    background-color: #8426fd;
+    background-color: #2a2a2a;
+    color: white;
+    border: white solid 0.1em;
+}
+.pagination li:focus a {
+    background-color: #2a2a2a;
     color: white;
     border: white solid 0.1em;
 }
 
 .pagination li:hover:not(.active) a {
-    background-color: #8426fd;
+    background-color: #1a1a1a;
     color: white;
 }
 
-/*Pagedown*/
+.pagination li:hover.active a {
+    background-color: #1a1a1a;
+    color: white;
+    border: white solid 0.1em;
+}
+
+
+
+/* ================== Pagedown ===================*/
+
 div.flask-pagedown-preview {
     margin: 10px 0px 10px 0px;
     border: 1px solid #6e6d70;
@@ -416,7 +407,7 @@ div.flask-pagedown-preview h3 {
     font-size: 120%;
 }
 
-/*Fonts*/
+/* ================ Fonts ===================*/
 .post-body h1 {
     font-size: 140%;
 }
@@ -429,37 +420,75 @@ div.flask-pagedown-preview h3 {
     font-size: 120%;
 }
 
-.table.followers tr {
-    border-bottom: 1px solid #6e6d70;
+
+
+
+/*=========== Buttons and labels ============*/
+
+.btn-default {
+    background-color: #2a2a2a;
+    color: white;
 }
 
-/* Specifically for Footer */
+.btn-default:hover {
+    background-color: #232323;
+    color: white;
+}
 
-html {
-    height: 100%;
-    margin: 0 auto;
-    max-width: 1366px;
+.btn-danger {
+    background-color: red;
 
 }
 
-body {
-    position: relative;
-    padding-bottom: 5em;
-    min-height: 100%;
-    width: 100%;
-    left: 0px;
-    right: 0px;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    margin-top: 5em;
+.btn-danger:hover {
+    background-color: red;
+    color: yellow;
+}
 
+.label-primary, .btn-primary {
+    background-color: #2a2a2a;
+    border: white solid 0.1em;
+}
+
+.label-default {
+    background-color: #8426fd;
+    color: yellow;
+}
+
+
+/*=========== Pill and Tabs ==============*/
+
+.nav-pills a:hover{
+    color: #1a1a1a;
+}
+
+.nav-tabs a:hover{
+    color: #1a1a1a;
+
+}
+.nav-pills .pill-tab:hover{
+    border: white;
+}
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: white;
+    background-color: #2a2a2a !important;
+    border: solid white 0.1em;
+}
+
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    color: white;
+    background-color: #2a2a2a;
 }
 
 /**
- * Footer Styles
+ * =============== Footer Styles =================
  */
 
 .footer {
-    color: #2a2a2a;
+    color: white;
     position: fixed;
     z-index: 1;
     bottom: 0;
@@ -469,23 +498,10 @@ body {
     background-color: black;
     width: 100%;
 }
+/*================== Followers =====================*/
 
-ul.dropdown-menu, #dropdown1 {
-    background-color: #2a2a2a;
-    color: white;
-
-}
-
-ul.dropdown-menu, #dropdown2 {
-    background-color: #2a2a2a;
-    color: white;
-
-}
-
-ul.dropdown-menu, #dropdown3 {
-    background-color: #2a2a2a;
-    color: white;
-
+.table.followers tr {
+    border-bottom: 1px solid #6e6d70;
 }
 
 /*==========  Non-Mobile First Method  ==========*/
@@ -501,7 +517,7 @@ ul.dropdown-menu, #dropdown3 {
 }
 
 /* Small Devices, Tablets */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
     .sidebar-right-index {
         display: none;
         width: 0px;
@@ -524,6 +540,34 @@ ul.dropdown-menu, #dropdown3 {
     .post-tabs {
         width: 100%;
     }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-brand {
+    font-family: 'Audiowide', cursive;
+    font-size: 2.5em;
+}
 }
 
 /* Extra Small Devices, Phones */
@@ -566,3 +610,32 @@ ul.dropdown-menu, #dropdown3 {
 
 }
 
+/*=============== Styles for AD (This has been removed but will return)==============*/
+
+.leaderboard {
+    background-color: #292929;
+    width: 100%;
+    height: 9em;
+    border-radius: 12px;
+
+}
+
+.leaderboard:before {
+    content: '';
+    position: relative;
+    top: 2em;
+    right: -97.85%;
+    border-top: 30px solid rgb(26, 26, 26);
+    border-left: 30px solid #292929;
+    width: 0;
+}
+
+.leaderboard:after {
+    content: '';
+    position: relative;
+    bottom: 0.7em;
+    left: 0;
+    border-bottom: 30px solid rgb(26, 26, 26);
+    border-right: 30px solid #292929;
+    width: 0;
+}
