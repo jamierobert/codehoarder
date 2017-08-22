@@ -1,6 +1,6 @@
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))
 
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
@@ -20,6 +20,14 @@ class Config:
     FLASKY_FOLLOWERS_PER_PAGE = 50
     FLASKY_COMMENTS_PER_PAGE = 30
     FLASKY_SLOW_DB_QUERY_TIME = 0.5
+
+    UPLOADS_DEFAULT_DEST = basedir + '/app/static/img/'
+    UPLOADS_DEFAULT_URL = 'http://localhost:5000/static/img/'
+
+    UPLOADED_IMAGES_DEST = basedir + '/app/static/img/'
+    UPLOADED_IMAGES_URL = 'http://localhost:5000/static/img/'
+
+
 
     @staticmethod
     def init_app(app):
