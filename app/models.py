@@ -309,6 +309,8 @@ class Post(db.Model):
     down_votes = db.Column(db.Integer, default=0)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    image_url = db.Column(db.String, default=None, nullable=True)
+    image_filename = db.Column(db.String, default=None, nullable=True)
 
     topics = db.relationship('Topic', secondary=relations, backref=db.backref('posts', lazy='dynamic'), lazy='dynamic')
 
