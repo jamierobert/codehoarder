@@ -2,6 +2,7 @@ from threading import Thread
 
 from flask import current_app, render_template
 from flask_mail import Message
+import os
 
 from . import mail
 
@@ -20,3 +21,13 @@ def send_email(to, subject, template, **kwargs):
     thr = Thread(target=send_async_email, args=[app, msg])
     thr.start()
     return thr
+
+
+def email_me(name, subject, email, message):
+
+    msg = Message(subject, sender=email, recipients=[ os.environ.get('FLASKY_ADMIN')])
+    msg.body = """ 
+    From: %s @ %s;
+    %s
+    """ % (name, email, message)
+    mail.send(msg)
