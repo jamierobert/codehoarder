@@ -146,6 +146,12 @@ def contact():
 def about():
     return render_template('about.html')
 
+@main.route('/topic/<int:id>')
+def topic (id):
+    topic = Topic.query.get_or_404(id)
+    posts = topic.posts.all()
+    return render_template('topic.html', topic=topic, posts=posts)
+
 @main.route('/user/<username>')
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
