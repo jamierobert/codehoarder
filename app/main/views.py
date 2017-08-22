@@ -120,24 +120,18 @@ def get_recommended_for_you(id):
                 recommended.append(post)
     return recommended
 
-
 @main.route('/contact', methods=['GET', 'POST'])
+@login_required
 def contact():
     form = ContactForm()
 
     if request.method == 'POST':
-        if form.validate() == False:
+        if not form.validate():
             flash('All fields are required.')
             return render_template('contact.html', form=form)
         else:
-            msg = Message(form.subject.data, sender='contact@example.com', recipients=['your_email@example.com'])
-            msg.body = """
-      From: %s <%s>
-      %s
-      """ % (form.name.data, form.email.data, form.message.data)
-            mail.send(msg)
-
-            return 'Form posted.'
+            email_me(form.name.data, form.subject.data, form.email.data, form.message.data)
+            return ('', 204)
 
     elif request.method == 'GET':
         return render_template('contact.html', form=form)
