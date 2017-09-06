@@ -5,19 +5,20 @@ html {
     height: 100%;
     margin: 0 auto;
     max-width: 1366px;
-
     color: white;
 }
 
 body {
     position: relative;
-    padding-bottom: 5em;
+    float: right;
+
     min-height: 100%;
     width: 100%;
     left: 0px;
-    right: 0px;
+    right: 0em;
     font-family: "Helvetica Neue", Arial, sans-serif;
-    margin-top: 5em;
+    padding: 5em 2em 5em 2em;
+
     background: rgba(17, 17, 17, 0.96);
     color: white;
 
@@ -36,7 +37,6 @@ body {
     background-image: url(coding.png);
     width: 100%;
     height: 10%;
-
     text-shadow: 1px 1px 1px #ccc;
 }
 
@@ -225,6 +225,10 @@ a:hover {
     margin: 1em;
     background-color: #292929;
     border-radius: 25px;
+}
+.podt-image{
+    max-height: 50em;
+    max-width: 5em;
 }
 .post-topics{
     padding-top: 2em;
